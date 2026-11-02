@@ -76,17 +76,17 @@ does not have.
 
 ## Publishing to the AUR
 
-The repository here is already initialised with the first commit and the AUR remote
-configured, so publishing is:
+Two remotes are configured: `origin` is the GitHub mirror, `aur` is the AUR repository.
+The first commit already exists, so publishing to the AUR is:
 
 ```bash
 ssh aur@aur.archlinux.org            # expect: "Welcome to aur.archlinux.org"
-git push -u origin master
+git push aur master
 ```
 
 `.gitignore` already excludes `src/`, `pkg/` and built packages; only the five files
 in the commit (`PKGBUILD`, `.SRCINFO`, `.gitignore`, `bump.sh`, `README.md`) go to
-the AUR.
+either remote.
 
 ## Updating
 
@@ -95,7 +95,7 @@ the AUR.
 ./bump.sh --check    # report only
 makepkg -f           # rebuild
 git commit -am "Update to $(sed -n 's/^pkgver=//p' PKGBUILD)"
-git push
+git push origin master && git push aur master
 ```
 
 `bump.sh` converts the base64 `sha512` values from `latest-linux.yml` and
