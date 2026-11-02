@@ -1,0 +1,10 @@
+# build artifacts — never part of the AUR repo
+/src/
+/pkg/
+*.pkg.tar.zst
+*.pkg.tar.xz
+*.src.tar.gz
+
+# editor / OS noise
+*.swp
+.DS_Store
